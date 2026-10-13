@@ -13,10 +13,11 @@ To statyczna strona: czysty HTML, CSS i JavaScript, bez frameworków i bez etapu
 ## Struktura
 
 ```
-index.html            strona główna (dane rekordów i skrypty są w tym pliku)
+index.html            strona główna
 pl/                   podstrony pod starymi adresami
 rodo.html, cookies.html, 404.html
 assets/style.css      wspólny arkusz stylów
+assets/js/            skrypty: main.js (strona główna, dane rekordów), nav.js (menu), lightbox.js (galeria)
 assets/img/           logo i zdjęcia; assets/img/thumb/ — miniatury galerii
 assets/fonts/         czcionka Inter (woff2)
 assets/vendor/        Leaflet 1.9.4
@@ -53,7 +54,7 @@ Gałąź `gh-pages` różni się od `main`: ścieżki mają przedrostek `/rekord
 
 Dane rekordów są zapisane w trzech miejscach i przy nowym rekordzie trzeba poprawić wszystkie:
 
-1. tablica `RECORDS` w skrypcie w `index.html` — z niej powstają wykres, filtry i tabela;
+1. tablica `RECORDS` w `assets/js/main.js` — z niej powstają wykres, filtry i tabela;
 2. statyczne wiersze tabeli (`<tbody id="rows">`) i karty aktualnych rekordów (`id="current"`) w `index.html` — wersja widoczna dla wyszukiwarek, zanim uruchomi się skrypt;
 3. tabele w `pl/rekordzisci.html`.
 

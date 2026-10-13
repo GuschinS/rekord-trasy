@@ -84,30 +84,7 @@
     <img id="lightboxImg" alt="">
     <div id="lightboxCap" style="color:#f9fafb;font-weight:500"></div>
 </div>
-<script>
-(function () {
-    var $ = function (id) { return document.getElementById(id); };
-    var close = function () { $('lightbox').hidden = true; $('lightboxImg').removeAttribute('src'); };
-    $('gallery').addEventListener('click', function (e) {
-        var a = e.target.closest('a');
-        if (!a) return;
-        e.preventDefault();
-        $('lightboxImg').src = a.href;
-        $('lightboxImg').alt = a.dataset.title;
-        $('lightboxCap').textContent = a.dataset.title;
-        $('lightbox').hidden = false;
-    });
-    $('lightbox').addEventListener('click', function (e) { if (e.target !== $('lightboxImg')) close(); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
-})();
-</script>
-<script>
-(function () {
-    var nav = document.getElementById('nav'), toggle = document.getElementById('navToggle');
-    toggle.addEventListener('click', function () {
-        toggle.setAttribute('aria-expanded', nav.classList.toggle('open'));
-    });
-})();
-</script>
+<script src="/assets/js/lightbox.js" defer></script>
+<script src="/assets/js/nav.js" defer></script>
 </body>
 </html>
