@@ -9,12 +9,14 @@ To statyczna strona: czysty HTML, CSS i JavaScript, bez frameworków i bez etapu
 - **Strona główna** — aktualny rekord, mapa trasy z liniami startu i mety, wykaz rekordzistów z filtrem kategorii, wyszukiwarką i wykresem, historia, regulamin w skrócie, galeria, kontakt.
 - **Podstrony pod dotychczasowymi adresami** — `pl/rekordzisci.html`, `pl/historia.html`, `pl/regulamin.html`, `pl/media.html`, `pl/linki.html`, `pl/kontakt.html`.
 - **Strony informacyjne** — `rodo.html`, `cookies.html`, `404.html`.
+- **Wersje językowe** — `en/index.html` (angielska) i `de/index.html` (niemiecka): tłumaczenie samej strony głównej. Podstrony, RODO i pliki cookie są tylko po polsku.
 
 ## Struktura
 
 ```
 index.html            strona główna
 pl/                   podstrony pod starymi adresami
+en/, de/              strona główna po angielsku i niemiecku
 rodo.html, cookies.html, 404.html
 assets/style.css      wspólny arkusz stylów
 assets/js/            skrypty: main.js (strona główna, dane rekordów), nav.js (menu), lightbox.js (galeria)
@@ -60,6 +62,10 @@ Dane rekordów są zapisane w trzech miejscach i przy nowym rekordzie trzeba pop
 
 Jeśli zmienia się rekord absolutny, należy też zaktualizować blok na górze strony głównej, sekcję „Rekord w liczbach” oraz opisy w znacznikach `<meta name="description">`.
 
+## Wersje językowe
+
+Strony `en/index.html` i `de/index.html` to przetłumaczone kopie `index.html` — nie powstają automatycznie. Po zmianie treści strony głównej trzeba poprawić także obie kopie. Teksty generowane przez skrypt (kategorie, etykiety, podpowiedzi) są w słowniku `I18N` w `assets/js/main.js` i dobierają się według atrybutu `<html lang>`.
+
 ## Prywatność
 
 Strona nie zapisuje plików cookie, nie korzysta z pamięci przeglądarki i nie zawiera narzędzi analitycznych. Czcionka, zdjęcia i skrypty są serwowane lokalnie. Jedyny zasób zewnętrzny to podkład mapy pobierany z serwerów OpenStreetMap.
@@ -68,7 +74,7 @@ Strona nie zapisuje plików cookie, nie korzysta z pamięci przeglądarki i nie 
 
 - **Pełne teksty.** Historia, wywiad z Romanem Paszke i regulamin są podane w skróconym omówieniu. W `pl/historia.html` i `pl/regulamin.html` miejsca na oryginalne teksty oznaczono komentarzami `<!-- PEŁNY TEKST ... -->`.
 - **Administrator danych.** W `rodo.html` jako administratora wskazano Komitet Rekordu Trasy; dane (podmiot, adres, okresy przechowywania) wymagają potwierdzenia.
-- **Wersja angielska.** Nie została przeniesiona; adresy `/en...` są tymczasowo (302) kierowane na strony polskie.
+- **Tłumaczenia.** Wersje angielska i niemiecka obejmują tylko stronę główną i nie były sprawdzane przez native speakera. Stare adresy `/en...` są kierowane (301) na `/en/`.
 - **Przebieg trasy na mapie** jest poglądowy; dokładne są tylko współrzędne linii startu i mety.
 
 ## Prawa autorskie i licencje

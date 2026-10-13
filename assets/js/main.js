@@ -2,11 +2,20 @@
 (function () {
     'use strict';
 
+    // Teksty interfejsu zależnie od języka strony (<html lang>)
+    var I18N = {
+        pl: { cats: ['Jednokadłubowce', 'Wielokadłubowce', 'Opale', 'Samotnicy'], all: 'Wszystkie', current: 'Aktualny', beaten: 'Pobity', capt: 'kpt.', crew: 'załoga', line: 'Linia startu/mety', chart: 'Wykres czasów rekordowych w latach 1983–2009', terms: {} },
+        en: { cats: ['Monohulls', 'Multihulls', 'Opal class', 'Single‑handed'], all: 'All', current: 'Current', beaten: 'Beaten', capt: 'Capt.', crew: 'crew', line: 'Start/finish line', chart: 'Chart of record times, 1983–2009', terms: { 'maxi katamaran': 'maxi catamaran', 'katamaran F‑40': 'F‑40 catamaran', 'katamaran': 'catamaran', 'trimaran kl. Exploder 25': 'Exploder 25 class trimaran', 'jednokadłubowiec': 'monohull', 'Własność prywatna': 'Privately owned' } },
+        de: { cats: ['Einrumpfboote', 'Mehrrumpfboote', 'Opal‑Klasse', 'Einhand'], all: 'Alle', current: 'Aktuell', beaten: 'Gebrochen', capt: 'Skipper', crew: 'Crew', line: 'Start-/Ziellinie', chart: 'Diagramm der Rekordzeiten 1983–2009', terms: { 'maxi katamaran': 'Maxi‑Katamaran', 'katamaran F‑40': 'Katamaran F‑40', 'katamaran': 'Katamaran', 'trimaran kl. Exploder 25': 'Trimaran, Klasse Exploder 25', 'jednokadłubowiec': 'Einrumpfboot', 'Własność prywatna': 'Privatbesitz' } }
+    };
+    var T = I18N[document.documentElement.lang] || I18N.pl;
+    var tr = function (s) { return T.terms[s] || s; };
+
     var CATEGORIES = {
-        mono:  { label: 'Jednokadłubowce',  color: 'var(--mono)' },
-        multi: { label: 'Wielokadłubowce',  color: 'var(--multi)' },
-        opal:  { label: 'Opale',            color: 'var(--opal)' },
-        solo:  { label: 'Samotnicy',        color: 'var(--solo)' }
+        mono:  { label: T.cats[0], color: 'var(--mono)' },
+        multi: { label: T.cats[1], color: 'var(--multi)' },
+        opal:  { label: T.cats[2], color: 'var(--opal)' },
+        solo:  { label: T.cats[3], color: 'var(--solo)' }
     };
 
     // Źródło: https://www.rekord-trasy.info/pl/rekordzisci.html (time w minutach)
@@ -61,7 +70,7 @@
             '<div class="subheader"><span class="dot" style="background:' + c.color + '"></span> ' + c.label + '</div>' +
             '<div class="current-time num">' + fmtTime(r.time) + '</div>' +
             '<div class="current-yacht">' + esc(r.yacht) + '</div>' +
-            '<div class="muted">kpt. ' + esc(r.skipper) + ' · ' + fmtDate(r.date) + '</div>' +
+            '<div class="muted">' + T.capt + ' ' + esc(r.skipper) + ' · ' + fmtDate(r.date) + '</div>' +
             '</div></button>';
     }).join('');
 
@@ -69,7 +78,7 @@
     var state = { cat: 'all', q: '', view: 'list' };
     var drawChart = null;
 
-    $('catFilter').innerHTML = [['all', 'Wszystkie']].concat(Object.keys(CATEGORIES).map(function (k) {
+    $('catFilter').innerHTML = [['all', T.all]].concat(Object.keys(CATEGORIES).map(function (k) {
         return [k, CATEGORIES[k].label];
     })).map(function (c) {
         return '<button type="button" class="btn" data-cat="' + c[0] + '">' + c[1] + '</button>';
@@ -77,8 +86,8 @@
 
     var statusBadge = function (r) {
         return isCurrent(r)
-            ? '<span class="badge badge-success"><span class="dot" style="background:var(--success)"></span>Aktualny</span>'
-            : '<span class="badge">Pobity</span>';
+            ? '<span class="badge badge-success"><span class="dot" style="background:var(--success)"></span>' + T.current + '</span>'
+            : '<span class="badge">' + T.beaten + '</span>';
     };
     var catBadge = function (r) {
         var c = CATEGORIES[r.cat];
@@ -99,10 +108,10 @@
         $('rows').innerHTML = list.map(function (r) {
             return '<tr>' +
                 '<td class="num" style="white-space:nowrap">' + fmtDate(r.date) + '</td>' +
-                '<td><div class="yacht">' + esc(r.yacht) + '</div>' + (r.type ? '<div class="muted">' + esc(r.type) + '</div>' : '') + '</td>' +
+                '<td><div class="yacht">' + esc(r.yacht) + '</div>' + (r.type ? '<div class="muted">' + esc(tr(r.type)) + '</div>' : '') + '</td>' +
                 '<td>' + esc(r.skipper) + '</td>' +
                 '<td class="num">' + r.crew + '</td>' +
-                '<td>' + esc(r.club) + '</td>' +
+                '<td>' + esc(tr(r.club)) + '</td>' +
                 '<td>' + catBadge(r) + '</td>' +
                 '<td class="time-cell"><strong class="num">' + fmtTime(r.time) + '</strong> ' + statusBadge(r) + bar(r) + '</td>' +
                 '</tr>';
@@ -112,9 +121,9 @@
             return '<div class="card"><div class="card-body">' +
                 '<div class="row">' + catBadge(r) + statusBadge(r) + '</div>' +
                 '<div class="current-time num">' + fmtTime(r.time) + '</div>' + bar(r) +
-                '<div class="yacht" style="margin-top:6px">' + esc(r.yacht) + (r.type ? ' <span class="muted" style="font-weight:400">· ' + esc(r.type) + '</span>' : '') + '</div>' +
-                '<div>kpt. ' + esc(r.skipper) + '</div>' +
-                '<div class="muted">' + fmtDate(r.date) + ' · załoga: ' + r.crew + ' · ' + esc(r.club) + '</div>' +
+                '<div class="yacht" style="margin-top:6px">' + esc(r.yacht) + (r.type ? ' <span class="muted" style="font-weight:400">· ' + esc(tr(r.type)) + '</span>' : '') + '</div>' +
+                '<div>' + T.capt + ' ' + esc(r.skipper) + '</div>' +
+                '<div class="muted">' + fmtDate(r.date) + ' · ' + T.crew + ': ' + r.crew + ' · ' + esc(tr(r.club)) + '</div>' +
                 '</div></div>';
         }).join('');
 
@@ -164,7 +173,7 @@
         var x0 = 1982, x1 = 2011, y1 = 45;
         var X = function (y) { return L + (y - x0) / (x1 - x0) * (W - L - R); };
         var Y = function (h) { return T + (1 - h / y1) * (H - T - B); };
-        var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Wykres czasów rekordowych w latach 1983–2009">';
+        var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + T.chart + '">';
         for (var h = 0; h <= 40; h += 10) {
             s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(h) + '" y2="' + Y(h) + '" stroke="#e5e7eb"/>' +
                  '<text x="' + (L - 8) + '" y="' + (Y(h) + 4) + '" text-anchor="end" font-size="12" fill="#6b7280">' + h + ' h</text>';
@@ -205,9 +214,9 @@
         var r = RECORDS[el.dataset.i], tip = $('chartTip');
         if (!r || !tip) return;
         tip.innerHTML = '<div class="t num">' + fmtTime(r.time) + '</div>' +
-            '<div><b>' + esc(r.yacht) + '</b>' + (r.type ? ' · ' + esc(r.type) : '') + '</div>' +
-            '<div>kpt. ' + esc(r.skipper) + '</div>' +
-            '<div class="muted">' + fmtDate(r.date) + ' · ' + CATEGORIES[r.cat].label + (isCurrent(r) ? ' · aktualny' : '') + '</div>';
+            '<div><b>' + esc(r.yacht) + '</b>' + (r.type ? ' · ' + esc(tr(r.type)) : '') + '</div>' +
+            '<div>' + T.capt + ' ' + esc(r.skipper) + '</div>' +
+            '<div class="muted">' + fmtDate(r.date) + ' · ' + CATEGORIES[r.cat].label + (isCurrent(r) ? ' · ' + T.current.toLowerCase() : '') + '</div>';
         tip.hidden = false;
         var box = $('chart').getBoundingClientRect(), c = el.getBoundingClientRect();
         var x = c.left + c.width / 2 - box.left, half = tip.offsetWidth / 2;
@@ -247,7 +256,7 @@
                 .addTo(map).bindTooltip(label, { permanent: true, direction: dir, offset: [0, dir === 'top' ? -8 : 8] });
         };
         [LINE_SWI, LINE_GDY].forEach(function (l) {
-            L.polyline(l, { color: '#d63939', weight: 4 }).addTo(map).bindTooltip('Linia startu/mety');
+            L.polyline(l, { color: '#d63939', weight: 4 }).addTo(map).bindTooltip(T.line);
         });
         pin(route[0], 'Świnoujście', 'bottom');
         pin(route[route.length - 1], 'Gdynia', 'bottom');

@@ -17,10 +17,11 @@ RedirectMatch 301 ^/pl[0-9a-f]{4}\.html$ /
 RedirectMatch 301 ^/pl/(rekordzisci|historia|regulamin|media|linki|kontakt)[0-9a-f]{4}\.html$ /pl/$1.html
 RedirectMatch 301 ^/pl/component/content/article/.*$ /pl/historia.html
 RedirectMatch 301 ^/pl/component/.*$ /
-# Wersja angielska nie została przeniesiona — tymczasowo kieruje na strony polskie
-RedirectMatch 302 ^/en/(?:record-holders|rekordzisci).*$ /pl/rekordzisci.html
-RedirectMatch 302 ^/en/links.*$ /pl/linki.html
-RedirectMatch 302 ^/en(?:\.html|/.*)?$ /
+# Stare adresy wersji angielskiej -> nowa strona /en/
+RewriteCond %{THE_REQUEST} \s/en\.html[\s?] [NC]
+RewriteRule ^en\.html$ /en/ [R=301,L]
+RewriteCond %{THE_REQUEST} \s/(en|de)/[^\s?]+ [NC]
+RewriteRule ^(en|de)/.+$ /$1/ [R=301,L]
 
 # Stare adresy zdjęć (wyszukiwarka grafiki)
 RedirectMatch 301 ^/components/com_joomgallery/img_(?:originals|pictures|thumbnails)/rekord_trasy_1/gemini_3_20100604_1033808150\.jpg$ /assets/img/gemini-3.jpg
