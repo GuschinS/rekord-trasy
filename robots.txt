@@ -1,4 +1,2 @@
 User-agent: *
-Allow: /
-
-Sitemap: https://www.rekord-trasy.info/sitemap.xml
+Disallow: /
