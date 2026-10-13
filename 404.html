@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nie znaleziono strony | Rekord Trasy</title>
+<meta name="description" content="Strona nie istnieje.">
+<meta name="robots" content="noindex">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#045282">
+<link rel="icon" type="image/png" href="/assets/img/logo.png">
+<link rel="apple-touch-icon" href="/assets/img/logo.png">
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="container">
+        <a class="brand" href="/">
+            <img src="/assets/img/logo.png" alt="" width="32" height="32">
+            Rekord Trasy
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <nav class="nav" id="nav">
+            <a href="/pl/rekordzisci.html">Rekordziści</a>
+            <a href="/pl/historia.html">Historia</a>
+            <a href="/pl/regulamin.html">Regulamin</a>
+            <a href="/pl/media.html">Media</a>
+            <a href="/pl/kontakt.html">Kontakt</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <div class="page">
+        <nav class="crumbs" aria-label="Okruszki"><a href="/">Rekord Trasy</a> <span aria-hidden="true">/</span> Nie znaleziono strony</nav>
+        <h1>Nie znaleziono strony</h1>
+        <p class="muted">Ten adres nie istnieje lub został przeniesiony.</p>
+        <div class="card"><div class="card-body">
+            <p>Przejdź do <a href="/">strony głównej</a>, <a href="/pl/rekordzisci.html">wykazu rekordzistów</a>, <a href="/pl/historia.html">historii</a> albo <a href="/pl/regulamin.html">regulaminu</a>.</p>
+        </div></div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div>
+            Treści i zdjęcia: © Marian Kula 2010<br>
+            Bez plików cookie i narzędzi śledzących
+        </div>
+        <div class="foot-links">
+            <nav aria-label="Serwis">
+                <a href="/">Strona główna</a>
+                <a href="/pl/rekordzisci.html">Rekordziści</a>
+                <a href="/pl/historia.html">Historia</a>
+                <a href="/pl/regulamin.html">Regulamin</a>
+                <a href="/pl/media.html">Media</a>
+                <a href="/pl/linki.html">Linki</a>
+                <a href="/pl/kontakt.html">Kontakt</a>
+                <a href="/rodo.html">RODO</a>
+                <a href="/cookies.html">Pliki cookie</a>
+            </nav>
+            <nav aria-label="Serwisy zewnętrzne">
+                <a href="https://www.sailspeedrecords.com/" target="_blank" rel="noopener">World Sailing Speed Record Council</a>
+                <a href="http://www.jkmw-kotwica.pl/" target="_blank" rel="noopener">JKMW „Kotwica”</a>
+                <a href="http://www.magazynwiatr.pl/" target="_blank" rel="noopener">Magazyn „Wiatr”</a>
+                <a href="https://regatta.osgps.pl/" target="_blank" rel="noopener">Omni Regatta</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+
+<script>
+(function () {
+    var nav = document.getElementById('nav'), toggle = document.getElementById('navToggle');
+    toggle.addEventListener('click', function () {
+        toggle.setAttribute('aria-expanded', nav.classList.toggle('open'));
+    });
+})();
+</script>
+</body>
+</html>
