@@ -239,3 +239,9 @@ footer nav { display: flex; gap: 16px; flex-wrap: wrap; }
 .page section > h2 { font-size: 18px; margin: 0 0 12px; }
 .foot-links { display: grid; gap: 8px; justify-items: end; }
 @media (max-width: 767px) { .foot-links { justify-items: start; } }
+
+/* Przełącznik języka */
+.lang { display: flex; gap: 2px; margin-left: 8px; padding-left: 10px; border-left: 1px solid var(--border); }
+.nav .lang a { font-size: 12px; font-weight: 600; padding: 6px; }
+.nav .lang a[aria-current] { color: var(--primary); background: var(--primary-lt); }
+@media (max-width: 767px) { .lang { margin: 8px 0 0; padding: 8px 0 0; border-left: 0; border-top: 1px solid var(--border); } }
