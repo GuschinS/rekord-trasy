@@ -1,0 +1,144 @@
+/* Wersja klasyczna — odtworzenie wyglądu dawnej strony (szablon Joomla „bluepulse”, 2010) */
+* { box-sizing: border-box; }
+html { background: #3a4a55; }
+body {
+    margin: 0;
+    background: #3a4a55 url(Page-BgSimpleGradient.jpg) repeat-x 0 0;
+    color: #94b5c2;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    line-height: 1.45;
+}
+img { max-width: 100%; height: auto; border: 0; }
+a, a:link { color: #88c1d3; text-decoration: underline; }
+a:visited { color: #bcc9d2; }
+a:hover { color: #d2e8ee; text-decoration: none; }
+p { margin: 0 0 1em; }
+h1, h2, h3, h4 { margin: 0; font-weight: bold; }
+h3 { font-size: 16px; color: #add5e1; margin: 1.2em 0 .5em; }
+h4 { font-size: 13px; color: #b8ced6; margin: 1.2em 0 .4em; }
+strong { color: #b8ced6; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Arkusz strony */
+.sheet {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #2b424a;
+    border-left: 1px solid #1d2d33;
+    border-right: 1px solid #1d2d33;
+}
+
+/* Nagłówek ze zdjęciem */
+.hd {
+    position: relative;
+    aspect-ratio: 898 / 275;
+    background: url(Header.jpg) center / cover no-repeat;
+}
+.hd-title { position: absolute; left: 21.2%; top: 18.2%; width: 61.2%; }
+.hd-title img { display: block; width: 100%; }
+.hd-logo { position: absolute; left: 85.7%; top: 14.5%; width: 11.1%; }
+.hd-record { position: absolute; left: 29.5%; top: 89.1%; width: 66.8%; margin: 0; }
+.hd-record img { display: block; width: 100%; }
+
+/* Menu */
+.menu { background: url(nav.png) repeat-x 0 0; min-height: 26px; }
+.menu ul { display: flex; flex-wrap: wrap; justify-content: center; margin: 0; padding: 0; list-style: none; }
+.menu a, .menu a:link, .menu a:visited {
+    display: block;
+    padding: 0 8px;
+    line-height: 26px;
+    color: #c5d0d8;
+    text-decoration: none;
+    white-space: nowrap;
+    background: url(MenuItem.png) 50% 26px / 100% 78px no-repeat;
+}
+.menu a:hover { color: #ecf2f4; background-position: 50% -26px; }
+.menu a[aria-current="page"] { color: #cbe4ec; background-position: 50% -52px; }
+
+/* Pasek z wersją i językami */
+.toolbar { display: flex; justify-content: flex-end; align-items: center; gap: 12px; padding: 18px 20px 4px; flex-wrap: wrap; }
+.flags { display: flex; gap: 4px; align-items: center; }
+.flags a { display: block; line-height: 0; opacity: .75; }
+.flags a:hover, .flags a[aria-current] { opacity: 1; }
+.flags img, .flags svg { width: 20px; height: 14px; display: block; }
+.btn-classic, .btn-classic:link, .btn-classic:visited {
+    display: inline-block;
+    padding: 5px 12px;
+    background: #36535e;
+    border: 1px solid #6ab2c8;
+    border-radius: 3px;
+    color: #cbe4ec;
+    font-weight: bold;
+    text-decoration: none;
+}
+.btn-classic:hover { background: #416471; color: #fff; }
+.btn-live { font-size: 13px; padding: 8px 18px; letter-spacing: .03em; }
+
+/* Artykuły */
+.content { padding: 0 10px 10px; }
+.post { margin: 10px; }
+.post-head { padding: 1px 1px 1px 6px; background: #36535e; border: 1px solid #2b424a; margin-bottom: 8px; }
+.post-head h1, .post-head h2 { font-size: 20px; line-height: 1.3; padding: 4px 0; color: #cbe4ec; }
+.post-head a, .post-head a:link, .post-head a:visited { color: #a6d1de; text-decoration: none; }
+.post-body { padding: 0 7px 7px; text-align: justify; }
+.post-body ul { margin: 1em 0 1em 1em; padding: 0; list-style: none; color: #9baebb; }
+.post-body ul li { padding-left: 14px; margin: .3em 0; background: url(PostBullets.png) no-repeat 0 2px; }
+.post-body ol { margin: 1em 0 1em 2em; padding: 0; color: #9baebb; }
+.post-body ol li { margin: .3em 0; }
+.center { text-align: center; }
+.photo-left { float: left; margin: 4px 16px 8px 0; }
+.clear { clear: both; }
+.note { color: #7f9fac; font-style: italic; }
+.actions { margin: 14px 0 6px; display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* Ramka z wyróżnioną informacją */
+.box { background: #22343a; border-radius: 8px; padding: 12px 16px; margin: 0 0 1em; }
+.box-head { color: #79bacd; font-weight: bold; margin-bottom: 6px; }
+
+/* Tabele */
+.table-wrap { overflow-x: auto; }
+table.data { border-collapse: collapse; width: 100%; table-layout: fixed; min-width: 640px; }
+table.data th, table.data td { border: 1px solid #416471; padding: 6px 7px; text-align: left; vertical-align: top; }
+table.data col.c-lp { width: 5%; } table.data col.c-date { width: 13%; } table.data col.c-yacht { width: 17%; }
+table.data col.c-skip { width: 25%; } table.data col.c-crew { width: 8%; } table.data col.c-club { width: 17%; } table.data col.c-time { width: 15%; }
+tr.legenda th { background: green; color: #eaf5ea; }
+tr.pobity td { background: grey; color: #eef2f4; }
+tr.aktualny td { background: blue; color: #eef2ff; }
+tr.porownawczy td { background: #3c3ca0; color: #eef2ff; }
+.cat-title { text-align: center; font-weight: bold; margin: 18px 0 8px; color: #b8ced6; }
+table.facts { border-collapse: collapse; margin: 0 0 1em; }
+table.facts th, table.facts td { border: 1px solid #416471; padding: 4px 10px; text-align: left; }
+table.facts th { color: #b8ced6; font-weight: bold; white-space: nowrap; }
+
+/* Galeria */
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 8px; }
+.gallery a { display: block; line-height: 0; border: 1px solid #416471; }
+.gallery a:hover { border-color: #88c1d3; }
+.gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.lightbox { position: fixed; inset: 0; z-index: 2000; background: rgba(10, 18, 22, .9); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; gap: 12px; }
+.lightbox[hidden] { display: none; }
+.lightbox img { max-width: 100%; max-height: calc(100vh - 110px); background: #fff; }
+.lightbox .btn-classic { position: absolute; top: 16px; right: 16px; cursor: pointer; font: inherit; font-weight: bold; }
+
+/* Stopka */
+.ft {
+    text-align: center;
+    padding: 20px 20px 24px;
+    color: #c2ced6;
+    font-size: 10px;
+    background: url(Footer.png) center bottom no-repeat;
+}
+.ft p { margin: 0 0 8px; }
+.ft a, .ft a:link { color: #6092a4; }
+.ft a:hover { color: #49a1bc; }
+.ft-logo { display: block; margin: 8px auto 0; }
+
+@media (max-width: 700px) {
+    body { font-size: 13px; }
+    .post-head h1, .post-head h2 { font-size: 17px; }
+    .post-body { text-align: left; }
+    .photo-left { float: none; margin: 0 0 12px; }
+    .toolbar { justify-content: center; padding-top: 12px; }
+    .menu a, .menu a:link, .menu a:visited { padding: 0 6px; }
+}
