@@ -65,6 +65,10 @@ Strona będzie dostępna pod adresem `http://localhost:8765/`.
 
 Gałąź `gh-pages` różni się od `main`: ścieżki mają przedrostek `/rekord-trasy/`, strony są oznaczone `noindex`, a `.htaccess` i `sitemap.xml` są usunięte. Nie aktualizuje się sama — zmiany z `main` trafiają do niej przez gałąź `preview-update` i pull request.
 
+## Pamięć podręczna przeglądarki
+
+Arkusze stylów i skrypty są dołączane z parametrem wersji, np. `/assets/style.css?v=20261020`. Po każdej zmianie pliku CSS lub JS trzeba zmienić tę wartość we wszystkich plikach HTML — inaczej przeglądarki odwiedzających mogą jeszcze przez jakiś czas pokazywać starą wersję.
+
 ## Aktualizacja rekordów
 
 Dane rekordów są zapisane w kilku miejscach i przy nowym wpisie trzeba poprawić wszystkie:

@@ -92,7 +92,7 @@
     var statusBadge = function (r) {
         if (r.ref) return '<span class="badge badge-primary">' + T.ref + '</span>';
         return isCurrent(r)
-            ? '<span class="badge badge-success"><span class="dot" style="background:var(--success)"></span>' + T.current + '</span>'
+            ? '<span class="badge badge-success">' + T.current + '</span>'
             : '<span class="badge">' + T.beaten + '</span>';
     };
     var catBadge = function (r) {
