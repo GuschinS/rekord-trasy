@@ -4,9 +4,9 @@
 
     // Teksty interfejsu zależnie od języka strony (<html lang>)
     var I18N = {
-        pl: { cats: ['Jednokadłubowce', 'Wielokadłubowce', 'Opale', 'Samotnicy'], all: 'Wszystkie', current: 'Aktualny', beaten: 'Pobity', capt: 'kpt.', crew: 'załoga', line: 'Linia startu/mety', chart: 'Wykres czasów rekordowych w latach 1983–2009', terms: {} },
-        en: { cats: ['Monohulls', 'Multihulls', 'Opal class', 'Single‑handed'], all: 'All', current: 'Current', beaten: 'Beaten', capt: 'Capt.', crew: 'crew', line: 'Start/finish line', chart: 'Chart of record times, 1983–2009', terms: { 'maxi katamaran': 'maxi catamaran', 'katamaran F‑40': 'F‑40 catamaran', 'katamaran': 'catamaran', 'trimaran kl. Exploder 25': 'Exploder 25 class trimaran', 'jednokadłubowiec': 'monohull', 'Własność prywatna': 'Privately owned' } },
-        de: { cats: ['Einrumpfboote', 'Mehrrumpfboote', 'Opal‑Klasse', 'Einhand'], all: 'Alle', current: 'Aktuell', beaten: 'Gebrochen', capt: 'Skipper', crew: 'Crew', line: 'Start-/Ziellinie', chart: 'Diagramm der Rekordzeiten 1983–2009', terms: { 'maxi katamaran': 'Maxi‑Katamaran', 'katamaran F‑40': 'Katamaran F‑40', 'katamaran': 'Katamaran', 'trimaran kl. Exploder 25': 'Trimaran, Klasse Exploder 25', 'jednokadłubowiec': 'Einrumpfboot', 'Własność prywatna': 'Privatbesitz' } }
+        pl: { cats: ['Jednokadłubowce', 'Wielokadłubowce', 'Opale', 'Samotnicy', 'Double‑Handed'], all: 'Wszystkie', current: 'Aktualny', beaten: 'Pobity', ref: 'Czas porównawczy', capt: 'kpt.', crew: 'załoga', line: 'Linia startu/mety', chart: 'Wykres czasów rekordowych w latach 1983–2009', terms: {} },
+        en: { cats: ['Monohulls', 'Multihulls', 'Opal class', 'Single‑handed', 'Double‑handed'], all: 'All', current: 'Current', beaten: 'Beaten', ref: 'Reference time', capt: 'Capt.', crew: 'crew', line: 'Start/finish line', chart: 'Chart of record times, 1983–2009', terms: { 'maxi katamaran': 'maxi catamaran', 'katamaran F‑40': 'F‑40 catamaran', 'katamaran': 'catamaran', 'trimaran kl. Exploder 25': 'Exploder 25 class trimaran', 'jednokadłubowiec': 'monohull', 'Własność prywatna': 'Privately owned' } },
+        de: { cats: ['Einrumpfboote', 'Mehrrumpfboote', 'Opal‑Klasse', 'Einhand', 'Double‑Handed'], all: 'Alle', current: 'Aktuell', beaten: 'Gebrochen', ref: 'Vergleichszeit', capt: 'Skipper', crew: 'Crew', line: 'Start-/Ziellinie', chart: 'Diagramm der Rekordzeiten 1983–2009', terms: { 'maxi katamaran': 'Maxi‑Katamaran', 'katamaran F‑40': 'Katamaran F‑40', 'katamaran': 'Katamaran', 'trimaran kl. Exploder 25': 'Trimaran, Klasse Exploder 25', 'jednokadłubowiec': 'Einrumpfboot', 'Własność prywatna': 'Privatbesitz' } }
     };
     var T = I18N[document.documentElement.lang] || I18N.pl;
     var tr = function (s) { return T.terms[s] || s; };
@@ -15,7 +15,8 @@
         mono:  { label: T.cats[0], color: 'var(--mono)' },
         multi: { label: T.cats[1], color: 'var(--multi)' },
         opal:  { label: T.cats[2], color: 'var(--opal)' },
-        solo:  { label: T.cats[3], color: 'var(--solo)' }
+        solo:  { label: T.cats[3], color: 'var(--solo)' },
+        double: { label: T.cats[4], color: 'var(--double)' }
     };
 
     // Źródło: https://www.rekord-trasy.info/pl/rekordzisci.html (time w minutach)
@@ -33,7 +34,8 @@
         { cat: 'opal',  date: '1984-09-03', yacht: 'Portowiec Gdański', type: '',                          skipper: 'Mariusz Pycz‑Pyczewski',     crew: 9,  club: 'TKKF Portowiec Gdański',    time: 30 * 60 + 39 },
         { cat: 'opal',  date: '1984-08-29', yacht: 'Dunajec',           type: '',                          skipper: 'Mirosław Peszkowski',        crew: 10, club: 'Nowosądecki OZŻ',           time: 28 * 60 + 6 },
         { cat: 'opal',  date: '1985-06-16', yacht: 'Komandor II',       type: '',                          skipper: 'Kazimierz Klugman',          crew: 8,  club: 'JKMW Kotwica',              time: 27 * 60 + 38 },
-        { cat: 'solo',  date: '2003-09-03', yacht: 'Morka',             type: 'jednokadłubowiec',          skipper: 'Zbigniew Szafranowicz',      crew: 1,  club: 'Własność prywatna',         time: 28 * 60 + 6 }
+        { cat: 'solo',  date: '2003-09-03', yacht: 'Morka',             type: 'jednokadłubowiec',          skipper: 'Zbigniew Szafranowicz',      crew: 1,  club: 'Własność prywatna',         time: 28 * 60 + 6 },
+        { cat: 'double', date: '2026-10-19', yacht: 'Lara Jane',         type: '',                          skipper: 'Roman Paszke, Aleksander Pieciukiewicz', crew: 2, club: '—',                time: 27 * 60, sec: 54, ref: true }
     ];
 
     var $ = function (id) { return document.getElementById(id); };
@@ -43,6 +45,10 @@
     var fmtTime = function (min) {
         var m = min % 60;
         return Math.floor(min / 60) + ' h ' + (m < 10 ? '0' : '') + m + ' min';
+    };
+    // Czas wpisu; sekundy tylko tam, gdzie zostały podane
+    var fmtRec = function (r) {
+        return fmtTime(r.time) + (r.sec ? ' ' + (r.sec < 10 ? '0' : '') + r.sec + ' s' : '');
     };
     var fmtDate = function (d) {
         var p = d.split('-');
@@ -68,7 +74,7 @@
         var r = best[key], c = CATEGORIES[key];
         return '<button type="button" class="card" data-cat="' + key + '" aria-pressed="false"><div class="card-body">' +
             '<div class="subheader"><span class="dot" style="background:' + c.color + '"></span> ' + c.label + '</div>' +
-            '<div class="current-time num">' + fmtTime(r.time) + '</div>' +
+            '<div class="current-time num">' + fmtRec(r) + '</div>' +
             '<div class="current-yacht">' + esc(r.yacht) + '</div>' +
             '<div class="muted">' + T.capt + ' ' + esc(r.skipper) + ' · ' + fmtDate(r.date) + '</div>' +
             '</div></button>';
@@ -85,6 +91,7 @@
     }).join('');
 
     var statusBadge = function (r) {
+        if (r.ref) return '<span class="badge badge-primary">' + T.ref + '</span>';
         return isCurrent(r)
             ? '<span class="badge badge-success"><span class="dot" style="background:var(--success)"></span>' + T.current + '</span>'
             : '<span class="badge">' + T.beaten + '</span>';
@@ -113,14 +120,14 @@
                 '<td class="num">' + r.crew + '</td>' +
                 '<td>' + esc(tr(r.club)) + '</td>' +
                 '<td>' + catBadge(r) + '</td>' +
-                '<td class="time-cell"><strong class="num">' + fmtTime(r.time) + '</strong> ' + statusBadge(r) + bar(r) + '</td>' +
+                '<td class="time-cell"><strong class="num">' + fmtRec(r) + '</strong> ' + statusBadge(r) + bar(r) + '</td>' +
                 '</tr>';
         }).join('');
 
         $('cards').innerHTML = list.map(function (r) {
             return '<div class="card"><div class="card-body">' +
                 '<div class="row">' + catBadge(r) + statusBadge(r) + '</div>' +
-                '<div class="current-time num">' + fmtTime(r.time) + '</div>' + bar(r) +
+                '<div class="current-time num">' + fmtRec(r) + '</div>' + bar(r) +
                 '<div class="yacht" style="margin-top:6px">' + esc(r.yacht) + (r.type ? ' <span class="muted" style="font-weight:400">· ' + esc(tr(r.type)) + '</span>' : '') + '</div>' +
                 '<div>' + T.capt + ' ' + esc(r.skipper) + '</div>' +
                 '<div class="muted">' + fmtDate(r.date) + ' · ' + T.crew + ': ' + r.crew + ' · ' + esc(tr(r.club)) + '</div>' +
@@ -170,7 +177,7 @@
     /* Wykres: rekord w czasie */
     drawChart = function () {
         var W = 1000, H = 300, L = 48, R = 16, T = 12, B = 30;
-        var x0 = 1982, x1 = 2011, y1 = 45;
+        var x0 = 1982, x1 = 2028, y1 = 45;
         var X = function (y) { return L + (y - x0) / (x1 - x0) * (W - L - R); };
         var Y = function (h) { return T + (1 - h / y1) * (H - T - B); };
         var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + T.chart + '">';
@@ -178,7 +185,7 @@
             s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(h) + '" y2="' + Y(h) + '" stroke="#e5e7eb"/>' +
                  '<text x="' + (L - 8) + '" y="' + (Y(h) + 4) + '" text-anchor="end" font-size="12" fill="#6b7280">' + h + ' h</text>';
         }
-        for (var y = 1985; y <= 2010; y += 5) {
+        for (var y = 1985; y <= 2025; y += 5) {
             s += '<text x="' + X(y) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="12" fill="#6b7280">' + y + '</text>';
         }
         Object.keys(CATEGORIES).forEach(function (key) {
@@ -194,7 +201,7 @@
                 d += d ? ' H' + px.toFixed(1) + ' V' + py.toFixed(1) : 'M' + px.toFixed(1) + ' ' + py.toFixed(1);
                 cur = r.time;
             });
-            d += ' H' + X(2010.5).toFixed(1);
+            d += ' H' + X(x1 - 0.5).toFixed(1);
             s += '<path d="' + d + '" fill="none" stroke="' + color + '" stroke-width="2" style="stroke:' + color + '"/>';
             pts.forEach(function (r) {
                 s += '<circle cx="' + X(yearFrac(r.date)).toFixed(1) + '" cy="' + Y(r.time / 60).toFixed(1) + '" r="5" fill="#fff" stroke-width="2" style="stroke:' + color + '" tabindex="0" data-i="' + RECORDS.indexOf(r) + '"/>';
@@ -213,10 +220,10 @@
     var showTip = function (el) {
         var r = RECORDS[el.dataset.i], tip = $('chartTip');
         if (!r || !tip) return;
-        tip.innerHTML = '<div class="t num">' + fmtTime(r.time) + '</div>' +
+        tip.innerHTML = '<div class="t num">' + fmtRec(r) + '</div>' +
             '<div><b>' + esc(r.yacht) + '</b>' + (r.type ? ' · ' + esc(tr(r.type)) : '') + '</div>' +
             '<div>' + T.capt + ' ' + esc(r.skipper) + '</div>' +
-            '<div class="muted">' + fmtDate(r.date) + ' · ' + CATEGORIES[r.cat].label + (isCurrent(r) ? ' · ' + T.current.toLowerCase() : '') + '</div>';
+            '<div class="muted">' + fmtDate(r.date) + ' · ' + CATEGORIES[r.cat].label + (r.ref ? ' · ' + T.ref.toLowerCase() : isCurrent(r) ? ' · ' + T.current.toLowerCase() : '') + '</div>';
         tip.hidden = false;
         var box = $('chart').getBoundingClientRect(), c = el.getBoundingClientRect();
         var x = c.left + c.width / 2 - box.left, half = tip.offsetWidth / 2;
