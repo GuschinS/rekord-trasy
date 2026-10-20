@@ -65,7 +65,6 @@
         if (!best[r.cat] || r.time < best[r.cat].time) best[r.cat] = r;
     });
     var isCurrent = function (r) { return best[r.cat] === r; };
-    var maxTime = Math.max.apply(null, RECORDS.map(function (r) { return r.time; }));
 
     $('statCount').textContent = RECORDS.length;
 
@@ -98,11 +97,10 @@
     };
     var catBadge = function (r) {
         var c = CATEGORIES[r.cat];
-        return '<span class="badge"><span class="dot" style="background:' + c.color + '"></span>' + c.label + '</span>';
+        return '<span class="badge">' + c.label + '</span>';
     };
-    var bar = function (r) {
-        return '<div class="bar"><i style="width:' + (r.time / maxTime * 100).toFixed(1) + '%;background:' + CATEGORIES[r.cat].color + '"></i></div>';
-    };
+    // Kolor kategorii jako znacznik na początku wiersza / karty
+    var mark = function (r) { return ' style="--cat:' + CATEGORIES[r.cat].color + '"'; };
 
     function render() {
         var q = state.q.trim().toLowerCase();
@@ -113,21 +111,21 @@
         }).sort(function (a, b) { return a.time - b.time; });
 
         $('rows').innerHTML = list.map(function (r) {
-            return '<tr>' +
+            return '<tr' + mark(r) + '>' +
                 '<td class="num" style="white-space:nowrap">' + fmtDate(r.date) + '</td>' +
                 '<td><div class="yacht">' + esc(r.yacht) + '</div>' + (r.type ? '<div class="muted">' + esc(tr(r.type)) + '</div>' : '') + '</td>' +
                 '<td>' + esc(r.skipper) + '</td>' +
                 '<td class="num">' + r.crew + '</td>' +
                 '<td>' + esc(tr(r.club)) + '</td>' +
                 '<td>' + catBadge(r) + '</td>' +
-                '<td class="time-cell"><strong class="num">' + fmtRec(r) + '</strong> ' + statusBadge(r) + bar(r) + '</td>' +
+                '<td class="time-cell"><strong class="num">' + fmtRec(r) + '</strong> ' + statusBadge(r) + '</td>' +
                 '</tr>';
         }).join('');
 
         $('cards').innerHTML = list.map(function (r) {
-            return '<div class="card"><div class="card-body">' +
+            return '<div class="card"' + mark(r) + '><div class="card-body">' +
                 '<div class="row">' + catBadge(r) + statusBadge(r) + '</div>' +
-                '<div class="current-time num">' + fmtRec(r) + '</div>' + bar(r) +
+                '<div class="current-time num">' + fmtRec(r) + '</div>' +
                 '<div class="yacht" style="margin-top:6px">' + esc(r.yacht) + (r.type ? ' <span class="muted" style="font-weight:400">· ' + esc(tr(r.type)) + '</span>' : '') + '</div>' +
                 '<div>' + T.capt + ' ' + esc(r.skipper) + '</div>' +
                 '<div class="muted">' + fmtDate(r.date) + ' · ' + T.crew + ': ' + r.crew + ' · ' + esc(tr(r.club)) + '</div>' +
