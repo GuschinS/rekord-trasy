@@ -249,6 +249,13 @@ footer nav { display: flex; gap: 16px; flex-wrap: wrap; }
 @media (max-width: 767px) { .lang { margin: 8px 0 0; padding: 8px 0 0; border-left: 0; border-top: 1px solid var(--border); } }
 
 /* Przejście do wersji klasycznej */
-.nav .nav-classic { border: 1px solid var(--primary); color: var(--primary); margin-left: 8px; }
-.nav .nav-classic:hover { background: var(--primary-lt); }
+.nav .nav-classic, .nav .nav-classic:visited { background: var(--primary); color: #f9fafb; font-weight: 600; margin-left: 8px; box-shadow: var(--shadow); }
+.nav .nav-classic:hover { background: var(--primary-hover); color: #fff; }
 @media (max-width: 767px) { .nav .nav-classic { margin: 8px 0 0; text-align: center; } }
+
+/* Znacznik kategorii na początku wiersza tabeli i karty */
+#rows td:first-child { box-shadow: inset 4px 0 0 var(--cat, transparent); }
+.record-cards .card { box-shadow: inset 4px 0 0 var(--cat, transparent), var(--shadow); }
+.facts.cols { columns: 2; column-gap: 40px; }
+.facts.cols li { break-inside: avoid; }
+@media (max-width: 767px) { .facts.cols { columns: 1; } }
