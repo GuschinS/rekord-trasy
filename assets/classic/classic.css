@@ -161,3 +161,9 @@ details.hist > p:last-of-type { padding-bottom: 10px; border-radius: 0 0 4px 4px
     .hist-year { grid-row: auto; }
     details.hist > p { margin-left: 0; }
 }
+
+/* Przeglądarka zdjęć: poprzednie / następne */
+.lightbox .lb-prev, .lightbox .lb-next { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 60px; padding: 0; font-size: 30px; line-height: 1; cursor: pointer; }
+.lightbox .lb-prev { left: 16px; right: auto; }
+.lightbox .lb-next { right: 16px; }
+@media (max-width: 700px) { .lightbox .lb-prev, .lightbox .lb-next { top: auto; bottom: 16px; transform: none; } }
