@@ -142,3 +142,20 @@ table.facts th { color: #b8ced6; font-weight: bold; white-space: nowrap; }
     .toolbar { justify-content: center; padding-top: 12px; }
     .menu a, .menu a:link, .menu a:visited { padding: 0 6px; }
 }
+
+/* Rozwijane wpisy historii */
+details.hist { border-bottom: 1px solid #416471; padding: 8px 0; }
+details.hist summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 70px 1fr; gap: 2px 12px; }
+details.hist summary::-webkit-details-marker { display: none; }
+.hist-year { grid-row: span 2; font-size: 16px; font-weight: bold; color: #add5e1; }
+.hist-sum { color: #b8ced6; }
+.hist-more { color: #88c1d3; text-decoration: underline; font-size: 10px; }
+.hist-more::after { content: " ▾"; }
+details.hist[open] .hist-more::after { content: " ▴"; }
+details.hist summary:hover .hist-more { color: #d2e8ee; }
+details.hist > p { margin: 8px 0 4px 82px; padding: 8px 10px; background: #22343a; border-radius: 4px; }
+@media (max-width: 700px) {
+    details.hist summary { grid-template-columns: 1fr; }
+    .hist-year { grid-row: auto; }
+    details.hist > p { margin-left: 0; }
+}
