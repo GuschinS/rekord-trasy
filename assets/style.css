@@ -259,3 +259,26 @@ footer nav { display: flex; gap: 16px; flex-wrap: wrap; }
 .facts.cols { columns: 2; column-gap: 40px; }
 .facts.cols li { break-inside: avoid; }
 @media (max-width: 767px) { .facts.cols { columns: 1; } }
+
+/* Karty aktualnych rekordów z paskiem */
+.current .card { box-shadow: inset 4px 0 0 var(--cat, transparent), var(--shadow); }
+.current .card.active { box-shadow: inset 4px 0 0 var(--cat, transparent), 0 0 0 1px var(--primary); }
+.current .current-time { font-size: clamp(18px, 1.6vw, 24px); white-space: nowrap; }
+
+/* Rozwijana historia */
+.timeline details summary { list-style: none; cursor: pointer; }
+.timeline details summary::-webkit-details-marker { display: none; }
+.timeline .year, .timeline .sum { display: block; }
+.timeline .sum { margin-top: 2px; }
+.timeline .more { display: inline-block; margin-top: 4px; font-size: 13px; font-weight: 500; color: var(--primary); }
+.timeline .more::after { content: " ▾"; }
+.timeline details[open] .more::after { content: " ▴"; }
+.timeline summary:hover .more { text-decoration: underline; }
+.timeline .detail { margin: 8px 0 0; padding: 10px 12px; background: var(--bg); border-radius: var(--radius-sm); }
+
+/* Teksty regulaminu i polityki w nowej wersji */
+.page .card-body h3 { font-size: 16px; margin: 20px 0 6px; }
+.page .card-body h3:first-child { margin-top: 0; }
+.page .center { text-align: center; }
+.page .note { color: var(--muted); }
+.page ol { margin: 0 0 12px; padding-left: 20px; }
