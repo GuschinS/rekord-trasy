@@ -71,8 +71,8 @@
     /* Aktualne rekordy */
     $('current').innerHTML = Object.keys(CATEGORIES).map(function (key) {
         var r = best[key], c = CATEGORIES[key];
-        return '<button type="button" class="card" data-cat="' + key + '" aria-pressed="false"><div class="card-body">' +
-            '<div class="subheader"><span class="dot" style="background:' + c.color + '"></span> ' + c.label + '</div>' +
+        return '<button type="button" class="card" data-cat="' + key + '" aria-pressed="false" style="--cat:' + c.color + '"><div class="card-body">' +
+            '<div class="subheader">' + c.label + '</div>' +
             '<div class="current-time num">' + fmtRec(r) + '</div>' +
             '<div class="current-yacht">' + esc(r.yacht) + '</div>' +
             '<div class="muted">' + T.capt + ' ' + esc(r.skipper) + ' · ' + fmtDate(r.date) + '</div>' +

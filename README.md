@@ -7,7 +7,7 @@ Serwis ma dwie wersje zbudowane na tej samej, nowej technologii (statyczny HTML,
 - **Wersja klasyczna** — główna strona serwisu. Wygląda jak dotychczasowa strona z 2010 roku (szablon Joomla „bluepulse”), działa pod dotychczasowymi adresami i jest uzupełniona o politykę prywatności, nowy regulamin, informację o śledzeniu prób na żywo (OMNI REGATTA) i nową kategorię Double‑Handed.
 - **Nowa wersja** — nowoczesna strona w stylu serwisu [Omni Regatta](https://regatta.osgps.pl/) pod adresem `/nowa/`, z mapą trasy, wykresem rekordów i wersjami po angielsku i niemiecku.
 
-Obie wersje są połączone przyciskami: „Nowa wersja strony” w wersji klasycznej i „Wersja klasyczna” w nowej.
+Między wersjami przechodzi się **wyłącznie** przyciskami: „Nowa wersja strony” w wersji klasycznej i „Wersja klasyczna” w nowej. Żadne inne odnośniki nie prowadzą z jednej wersji do drugiej — każda ma własny regulamin, politykę prywatności i menu.
 
 ## Co zawiera
 
@@ -17,17 +17,21 @@ Obie wersje są połączone przyciskami: „Nowa wersja strony” w wersji klasy
 - `pl/rekordzisci.html`, `pl/historia.html`, `pl/regulamin.html`, `pl/media.html`, `pl/linki.html`, `pl/kontakt.html` — podstrony pod dotychczasowymi adresami.
 - `pl/polityka-prywatnosci.html` — polityka prywatności (RODO) przekazana przez administratora.
 - `dokumenty/formularz-zgloszenia-proby.pdf` — formularz zgłoszenia próby bicia rekordu.
+- `en.html` i `en/` — wersja angielska pod tymi samymi adresami co na dawnej stronie: `en/record-holders.html`, `en/history.html`, `en/rules.html`, `en/media.html`, `en/links.html`, `en/contact.html`, `en/privacy-policy.html`. Regulamin i polityka prywatności po angielsku są tłumaczeniem informacyjnym, wiąże tekst polski.
+- Historia ma rozwijane wpisy: krótki opis roku, a po kliknięciu — szczegóły.
 - `404.html`.
 
 **Nowa wersja**
 
 - `nowa/index.html` — aktualny rekord, mapa trasy z liniami startu i mety, wykaz rekordzistów z filtrem kategorii, wyszukiwarką i wykresem, historia, regulamin w skrócie, galeria, kontakt.
 - `nowa/en/index.html`, `nowa/de/index.html` — tłumaczenia strony głównej nowej wersji.
+- `nowa/regulamin.html`, `nowa/polityka-prywatnosci.html`, `nowa/en/privacy-policy.html` — regulamin i polityka prywatności w wyglądzie nowej wersji.
 
 ## Struktura
 
 ```
-index.html, pl/, 404.html   wersja klasyczna
+index.html, pl/, 404.html   wersja klasyczna (polska)
+en.html, en/                wersja klasyczna (angielska)
 nowa/                       nowa wersja (nowa/en/, nowa/de/ — tłumaczenia)
 dokumenty/                  dokumenty do pobrania (PDF)
 assets/classic/             arkusz stylów i grafika wersji klasycznej
@@ -67,7 +71,7 @@ Gałąź `gh-pages` różni się od `main`: ścieżki mają przedrostek `/rekord
 
 ## Pamięć podręczna przeglądarki
 
-Arkusze stylów i skrypty są dołączane z parametrem wersji, np. `/assets/style.css?v=20261020`. Po każdej zmianie pliku CSS lub JS trzeba zmienić tę wartość we wszystkich plikach HTML — inaczej przeglądarki odwiedzających mogą jeszcze przez jakiś czas pokazywać starą wersję.
+Arkusze stylów i skrypty są dołączane z parametrem wersji, np. `/assets/style.css?v=20261021`. Po każdej zmianie pliku CSS lub JS trzeba zmienić tę wartość we wszystkich plikach HTML — inaczej przeglądarki odwiedzających mogą jeszcze przez jakiś czas pokazywać starą wersję.
 
 ## Aktualizacja rekordów
 
@@ -75,7 +79,7 @@ Dane rekordów są zapisane w kilku miejscach i przy nowym wpisie trzeba poprawi
 
 1. tablica `RECORDS` w `assets/js/main.js` — z niej powstają wykres, filtry i tabela nowej wersji;
 2. statyczne wiersze tabeli (`<tbody id="rows">`) i karty aktualnych rekordów (`id="current"`) w `nowa/index.html`, `nowa/en/index.html` i `nowa/de/index.html` — wersja widoczna dla wyszukiwarek, zanim uruchomi się skrypt;
-3. tabele w `pl/rekordzisci.html` (wersja klasyczna).
+3. tabele w `pl/rekordzisci.html` i `en/record-holders.html` (wersja klasyczna).
 
 Jeśli zmienia się rekord absolutny, należy też zaktualizować obrazek `assets/classic/pl-plaktualnyRekord.png` w nagłówku wersji klasycznej, blok na górze nowej wersji, sekcję „Rekord w liczbach” oraz opisy w znacznikach `<meta name="description">`.
 
@@ -83,7 +87,7 @@ Wpis z polem `ref: true` w `RECORDS` to czas porównawczy (np. Double‑Handed, 
 
 ## Wersje językowe
 
-Strony `nowa/en/index.html` i `nowa/de/index.html` to przetłumaczone kopie `nowa/index.html` — nie powstają automatycznie. Po zmianie treści trzeba poprawić także obie kopie. Teksty generowane przez skrypt (kategorie, etykiety, podpowiedzi) są w słowniku `I18N` w `assets/js/main.js` i dobierają się według atrybutu `<html lang>`. Wersja klasyczna jest tylko po polsku; flagi EN i DE prowadzą do tłumaczeń nowej wersji.
+Wersja klasyczna jest po polsku i angielsku (flagi w prawym górnym rogu przełączają między odpowiadającymi sobie stronami). Strony `nowa/en/index.html` i `nowa/de/index.html` to przetłumaczone kopie `nowa/index.html` — nie powstają automatycznie. Po zmianie treści trzeba poprawić także obie kopie. Teksty generowane przez skrypt (kategorie, etykiety, podpowiedzi) są w słowniku `I18N` w `assets/js/main.js` i dobierają się według atrybutu `<html lang>`.
 
 ## Prywatność
 
@@ -91,7 +95,7 @@ Serwis nie zapisuje plików cookie, nie korzysta z pamięci przeglądarki i nie 
 
 ## Do uzupełnienia przed publikacją
 
-- **Pełne teksty.** Artykuł „Czy Paszke ustanowił rekord nie do pobicia?” na stronie głównej i opracowanie historii w `pl/historia.html` są podane w skróconym omówieniu. Miejsca na oryginalne teksty oznaczono komentarzami `<!-- PEŁNY TEKST ... -->`.
+- **Pełne teksty.** Artykuł „Czy Paszke ustanowił rekord nie do pobicia?” jest podany w skróconym omówieniu, a rozwijane wpisy historii — we własnym, rozszerzonym omówieniu opracowania Mariana Kuli. Oryginalne teksty można wkleić w miejsca oznaczone komentarzami `<!-- PEŁNY TEKST ... -->` lub w rozwijane wpisy.
 - **Regulamin, pkt 10.** Z przekazanego tekstu usunięto roboczą uwagę „mamy oficjalny Certyfikat?” — do potwierdzenia przez Komitet.
 - **Regulamin, pkt 5.** Regulamin odsyła do „dedykowanej zakładki” z instrukcją aplikacji OMNI REGATTA RACE RECORDER — takiej strony jeszcze nie ma.
 - **Adres e‑mail.** Strona „Kontakt” podaje dawny adres `rekordtrasy@gmail.com`, a regulamin i polityka prywatności — `komitet@rekord-trasy.info`.
