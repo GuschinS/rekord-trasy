@@ -282,3 +282,13 @@ footer nav { display: flex; gap: 16px; flex-wrap: wrap; }
 .page .center { text-align: center; }
 .page .note { color: var(--muted); }
 .page ol { margin: 0 0 12px; padding-left: 20px; }
+
+/* Mapa pod nagłówkiem: przyciski powiększenia nie nachodzą na menu */
+#map { position: relative; z-index: 0; }
+
+/* Przeglądarka zdjęć */
+.lightbox .lb-prev, .lightbox .lb-next { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 64px; padding: 0; font-size: 34px; line-height: 1; }
+.lightbox .lb-prev { left: 16px; right: auto; }
+.lightbox .lb-next { right: 16px; }
+.lightbox button#lightboxClose { position: absolute; top: 16px; right: 16px; }
+@media (max-width: 767px) { .lightbox .lb-prev, .lightbox .lb-next { top: auto; bottom: 16px; transform: none; } }

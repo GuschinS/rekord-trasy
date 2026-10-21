@@ -71,7 +71,7 @@ Gałąź `gh-pages` różni się od `main`: ścieżki mają przedrostek `/rekord
 
 ## Pamięć podręczna przeglądarki
 
-Arkusze stylów i skrypty są dołączane z parametrem wersji, np. `/assets/style.css?v=20261021`. Po każdej zmianie pliku CSS lub JS trzeba zmienić tę wartość we wszystkich plikach HTML — inaczej przeglądarki odwiedzających mogą jeszcze przez jakiś czas pokazywać starą wersję.
+Arkusze stylów i skrypty są dołączane z parametrem wersji, np. `/assets/style.css?v=20261023`. Po każdej zmianie pliku CSS lub JS trzeba zmienić tę wartość we wszystkich plikach HTML — inaczej przeglądarki odwiedzających mogą jeszcze przez jakiś czas pokazywać starą wersję.
 
 ## Aktualizacja rekordów
 
